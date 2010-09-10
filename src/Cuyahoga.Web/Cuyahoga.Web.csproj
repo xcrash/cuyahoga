@@ -1,7 +1,7 @@
 ﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{DD158F08-6E8F-4234-B3F6-A5402C8E34CC}</ProjectGuid>
     <ProjectTypeGuids>{603c0e0b-db56-11dc-be95-000d561079b0};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -94,6 +94,10 @@
       <Project>{C64DAA00-AAB1-4AC7-ADE2-119B53B9666A}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
     </ProjectReference>
+    <Reference Include="Antlr3.Runtime, Version=3.1.0.39271, Culture=neutral, PublicKeyToken=3a9cab8f8d22bfb7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Castle.Components.Validator, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Castle.Components.Validator.dll</HintPath>
@@ -102,9 +106,25 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Castle.Facilities.AutomaticTransactionManagement, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Castle.Facilities.AutomaticTransactionManagement.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Facilities.Logging, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Castle.Facilities.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Facilities.NHibernateIntegration, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Castle.Facilities.NHibernateIntegration.dll</HintPath>
+    </Reference>
     <Reference Include="Castle.MicroKernel">
       <Name>Castle.MicroKernel</Name>
       <HintPath>..\..\lib\Castle.MicroKernel.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Services.Logging.Log4netIntegration, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Castle.Services.Logging.Log4netIntegration.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Windsor">
       <Name>Castle.Windsor</Name>
@@ -113,6 +133,14 @@
     <Reference Include="log4net">
       <Name>log4net</Name>
       <HintPath>..\..\lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.ByteCode.Castle, Version=2.1.0.3001, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\NHibernate.ByteCode.Castle.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.Caches.SysCache, Version=2.1.0.3001, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\NHibernate.Caches.SysCache.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>
@@ -1444,14 +1472,8 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>xcopy /s /y "$(SolutionDir)"..\lib\NHibernate.Caches.SysCache.dll "$(TargetDir)"
-xcopy /s /y "$(SolutionDir)"..\lib\NHibernate.ByteCode.Castle.dll "$(TargetDir)"
-xcopy /s /y "$(SolutionDir)"..\lib\Antlr3.Runtime.dll "$(TargetDir)"
-xcopy /s /y "$(SolutionDir)"..\lib\Castle.Facilities.AutomaticTransactionManagement.dll "$(TargetDir)"
-xcopy /s /y "$(SolutionDir)"..\lib\Castle.Facilities.NHibernateIntegration.dll "$(TargetDir)"
-xcopy /s /y "$(SolutionDir)"..\lib\Castle.Components.Validator.dll "$(TargetDir)"
-xcopy /s /y "$(SolutionDir)"..\lib\Castle.Facilities.Logging.dll "$(TargetDir)"
-xcopy /s /y "$(SolutionDir)"..\lib\Castle.Services.Logging.Log4netIntegration.dll "$(TargetDir)"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
@@ -1463,9 +1485,6 @@ xcopy /s /y "$(SolutionDir)"..\lib\Castle.Services.Logging.Log4netIntegration.dl
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost/cuyahoga</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
