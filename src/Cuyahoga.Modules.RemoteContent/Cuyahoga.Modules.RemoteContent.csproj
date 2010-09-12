@@ -172,8 +172,8 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>xcopy /s /y "$(ProjectDir)"Web\*.as?x "$(SolutionDir)"Cuyahoga.Web\Modules\RemoteContent\
-xcopy /s /y "$(ProjectDir)"Install\Database\*.sql "$(SolutionDir)"Cuyahoga.Web\Modules\RemoteContent\Install\Database\
-xcopy /s /y "$(TargetDir)"Cuyahoga.Modules.RemoteContent*.dll "$(SolutionDir)"Cuyahoga.Web\bin\</PostBuildEvent>
+    <PostBuildEvent>xcopy /s /y "$(ProjectDir)"Web\*.as?x "$(ProjectDir)"..\Cuyahoga.Web\Modules\RemoteContent\
+xcopy /s /y "$(ProjectDir)"Install\Database\*.sql "$(ProjectDir)"..\Cuyahoga.Web\Modules\RemoteContent\Install\Database\
+xcopy /s /y "$(TargetDir)"Cuyahoga.Modules.RemoteContent*.dll "$(ProjectDir)"..\Cuyahoga.Web\bin\</PostBuildEvent>
   </PropertyGroup>
 </Project>

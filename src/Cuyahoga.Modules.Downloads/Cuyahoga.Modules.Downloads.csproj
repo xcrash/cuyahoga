@@ -1,7 +1,7 @@
 ﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{A613CF88-E66F-492B-9FD3-259BA3BD7310}</ProjectGuid>
     <ProjectTypeGuids>{603c0e0b-db56-11dc-be95-000d561079b0};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -272,13 +272,13 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>xcopy /s /y "$(ProjectDir)"Web\*.as?x "$(SolutionDir)"Cuyahoga.Web\Modules\Downloads\
-xcopy /s /y "$(ProjectDir)"Web\*.gif "$(SolutionDir)"Cuyahoga.Web\Modules\Downloads\
-xcopy /s /y "$(ProjectDir)"Install\Database\*.sql "$(SolutionDir)"Cuyahoga.Web\Modules\Downloads\Install\Database\
-xcopy /s /y "$(TargetDir)"Cuyahoga.Modules.Downloads*.dll "$(SolutionDir)"Cuyahoga.Web\bin\
-xcopy /s /y "$(ProjectDir)"Views\*.as?x "$(SolutionDir)"Cuyahoga.Web\Modules\Downloads\Views\
-xcopy /s /y "$(ProjectDir)"Views\*.config "$(SolutionDir)"Cuyahoga.Web\Modules\Downloads\Views\
-xcopy /s /y "$(ProjectDir)"App_GlobalResources\*.resx "$(SolutionDir)"Cuyahoga.Web\App_GlobalResources\</PostBuildEvent>
+    <PostBuildEvent>xcopy /s /y "$(ProjectDir)"Web\*.as?x "$(ProjectDir)"..\Cuyahoga.Web\Modules\Downloads\
+xcopy /s /y "$(ProjectDir)"Web\*.gif "$(ProjectDir)"..\Cuyahoga.Web\Modules\Downloads\
+xcopy /s /y "$(ProjectDir)"Install\Database\*.sql "$(ProjectDir)"..\Cuyahoga.Web\Modules\Downloads\Install\Database\
+xcopy /s /y "$(TargetDir)"Cuyahoga.Modules.Downloads*.dll "$(ProjectDir)"..\Cuyahoga.Web\bin\
+xcopy /s /y "$(ProjectDir)"Views\*.as?x "$(ProjectDir)"..\Cuyahoga.Web\Modules\Downloads\Views\
+xcopy /s /y "$(ProjectDir)"Views\*.config "$(ProjectDir)"..\Cuyahoga.Web\Modules\Downloads\Views\
+xcopy /s /y "$(ProjectDir)"App_GlobalResources\*.resx "$(ProjectDir)"..\Cuyahoga.Web\App_GlobalResources\</PostBuildEvent>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
@@ -291,9 +291,6 @@ xcopy /s /y "$(ProjectDir)"App_GlobalResources\*.resx "$(SolutionDir)"Cuyahoga.W
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
