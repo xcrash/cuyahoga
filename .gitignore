@@ -9,3 +9,12 @@ _ReSharper.*
 *.resharper
 *.suo
 *.cache
+/src/Cuyahoga.Web/Modules/Articles
+/src/Cuyahoga.Web/Modules/Categories
+/src/Cuyahoga.Web/Modules/Downloads
+/src/Cuyahoga.Web/Modules/LanguageSwitcher
+/src/Cuyahoga.Web/Modules/RemoteContent
+/src/Cuyahoga.Web/Modules/Search
+/src/Cuyahoga.Web/Modules/Sitemap
+/src/Cuyahoga.Web/Modules/StaticHtml
+/src/Cuyahoga.Web/Modules/User
