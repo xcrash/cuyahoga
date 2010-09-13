@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Cuyahoga.Core.Domain;
 using Cuyahoga.Core.Service;
 using Cuyahoga.Core.Service.Membership;
+using Cuyahoga.Core.Service.Modules;
 using Cuyahoga.Core.Service.SiteStructure;
 using Cuyahoga.Web.Components;
 using Cuyahoga.Web.Manager.Model.ViewModels;
@@ -64,7 +65,7 @@ namespace Cuyahoga.Web.Manager.Controllers
 			try
 			{
 				string moduleInstallDirectory = GetPhysicalModuleInstallDirectory(moduleName);
-				DatabaseInstaller dbInstaller = new DatabaseInstaller(moduleInstallDirectory, null);
+				ModuleInstaller dbInstaller = new ModuleInstaller(moduleInstallDirectory, null);
 				dbInstaller.Install();
 				ModuleType moduleType = this._moduleTypeService.GetModuleByName(moduleName);
 				moduleType.AutoActivate = true;
@@ -85,7 +86,7 @@ namespace Cuyahoga.Web.Manager.Controllers
 			ModuleType moduleType = this._moduleTypeService.GetModuleByName(moduleName);
 			try
 			{
-				DatabaseInstaller dbInstaller = GetDbInstallerForModuleType(moduleType);
+				ModuleInstaller dbInstaller = GetDbInstallerForModuleType(moduleType);
 				dbInstaller.Upgrade();
 				Messages.AddFlashMessageWithParams("ModuleUpgradedMessage", moduleName);
 			}
@@ -117,7 +118,7 @@ namespace Cuyahoga.Web.Manager.Controllers
 			{
 				try
 				{
-					DatabaseInstaller dbInstaller = GetDbInstallerForModuleType(moduleType);
+					ModuleInstaller dbInstaller = GetDbInstallerForModuleType(moduleType);
 					dbInstaller.Uninstall();
 					Messages.AddFlashMessageWithParams("ModuleUninstalledMessage", moduleName);
 				}
@@ -170,18 +171,18 @@ namespace Cuyahoga.Web.Manager.Controllers
 				{
 					moduleAssembly = Assembly.Load(availableModule.AssemblyName);
 				}
-				DatabaseInstaller dbInstaller = new DatabaseInstaller(physicalModuleInstallDirectory, moduleAssembly);
-				moduleViewData.CanInstall = dbInstaller.CanInstall;
-				moduleViewData.CanUpgrade = dbInstaller.CanUpgrade;
-				moduleViewData.CanUninstall = dbInstaller.CanUninstall;
+				ModuleInstaller moduleInfo = new ModuleInstaller(physicalModuleInstallDirectory, moduleAssembly);
+				moduleViewData.CanInstall = moduleInfo.CanInstall;
+				moduleViewData.CanUpgrade = moduleInfo.CanUpgrade;
+				moduleViewData.CanUninstall = moduleInfo.CanUninstall;
 
 				moduleViewData.ActivationStatus = this._moduleLoader.IsModuleActive(availableModule)
 				                                  	? GetText("ActiveStatus")
 				                                  	: GetText("InactiveStatus");
-				if (dbInstaller.CurrentVersionInDatabase != null)
+				if (moduleInfo.CurrentVersionInDatabase != null)
 				{
-					moduleViewData.ModuleVersion = dbInstaller.CurrentVersionInDatabase.ToString(3);
-					if (dbInstaller.CanUpgrade)
+					moduleViewData.ModuleVersion = moduleInfo.CurrentVersionInDatabase.ToString(3);
+					if (moduleInfo.CanUpgrade)
 					{
 						moduleViewData.InstallationStatus = GetText("InstalledUpgradeStatus");
 					}
@@ -204,11 +205,11 @@ namespace Cuyahoga.Web.Manager.Controllers
 			return Path.Combine(Server.MapPath("~/Modules/" + moduleName), "Install");
 		}
 
-		private DatabaseInstaller GetDbInstallerForModuleType(ModuleType moduleType)
+		private ModuleInstaller GetDbInstallerForModuleType(ModuleType moduleType)
 		{
 			Assembly moduleAssembly = Assembly.Load(moduleType.AssemblyName);
 			string moduleInstallDirectory = GetPhysicalModuleInstallDirectory(moduleType.Name);
-			return new DatabaseInstaller(moduleInstallDirectory, moduleAssembly);
+			return new ModuleInstaller(moduleInstallDirectory, moduleAssembly);
 		}
 	}
 }

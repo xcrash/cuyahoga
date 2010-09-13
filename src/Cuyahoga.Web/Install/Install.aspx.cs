@@ -11,6 +11,7 @@ using Cuyahoga.Core.DataAccess;
 using Cuyahoga.Core.Domain;
 using Cuyahoga.Core.Service;
 using Cuyahoga.Core.Service.Membership;
+using Cuyahoga.Core.Service.Modules;
 using Cuyahoga.Core.Service.SiteStructure;
 using Cuyahoga.Core.Util;
 using Cuyahoga.Web.Components;
@@ -72,16 +73,16 @@ namespace Cuyahoga.Web.Install
 					// Check installable state. Check both Cuyahoga.Core and Cuyahoga.Modules.
 					bool canInstall = false;
 					// Core
-					DatabaseInstaller dbInstaller = new DatabaseInstaller(Server.MapPath("~/Install/Core"), Assembly.Load("Cuyahoga.Core"));
-					if (dbInstaller.CanInstall)
+					ModuleInstaller coreInstaller = new ModuleInstaller(Server.MapPath("~/Install/Core"), Assembly.Load("Cuyahoga.Core"));
+					if (coreInstaller.CanInstall)
 					{
-						lblCoreAssembly.Text = "Cuyahoga Core " + dbInstaller.NewAssemblyVersion.ToString(3);
+						lblCoreAssembly.Text = "Cuyahoga Core " + coreInstaller.NewAssemblyVersion.ToString(3);
 						// Core modules
-						DatabaseInstaller moduleDbInstaller = new DatabaseInstaller(Server.MapPath("~/Install/Modules"), Assembly.Load("Cuyahoga.Modules"));
-						if (moduleDbInstaller.CanInstall)
+						ModuleInstaller modulesInstaller = new ModuleInstaller(Server.MapPath("~/Install/Modules"), Assembly.Load("Cuyahoga.Modules"));
+						if (modulesInstaller.CanInstall)
 						{
 							canInstall = true;
-							lblModulesAssembly.Text = "Cuyahoga Core Modules " + moduleDbInstaller.NewAssemblyVersion.ToString(3);
+							lblModulesAssembly.Text = "Cuyahoga Core Modules " + modulesInstaller.NewAssemblyVersion.ToString(3);
 						}
 					}
 					if (canInstall)
@@ -132,8 +133,8 @@ namespace Cuyahoga.Web.Install
 				if (shouldAdd)
 				{
 					// Check if the module can be installed
-					DatabaseInstaller moduleInstaller = new DatabaseInstaller(Path.Combine(Server.MapPath("~/Modules/" + di.Name), "Install"), null);
-					if (moduleInstaller.CanInstall)
+					ModuleInstaller moduleInfo = new ModuleInstaller(Path.Combine(Server.MapPath("~/Modules/" + di.Name), "Install"), null);
+					if (moduleInfo.CanInstall)
 					{
 						installableModules.Add(di.Name);
 					}
@@ -152,7 +153,7 @@ namespace Cuyahoga.Web.Install
 				{
 					Literal litModuleName = (Literal) ri.FindControl("litModuleName");
 					string moduleName = litModuleName.Text;
-					DatabaseInstaller moduleInstaller = new DatabaseInstaller(Path.Combine(Server.MapPath("~/Modules/" + moduleName), "Install"), null);
+					ModuleInstaller moduleInstaller = new ModuleInstaller(Path.Combine(Server.MapPath("~/Modules/" + moduleName), "Install"), null);
 					moduleInstaller.Install();
 				}
 			}
@@ -384,8 +385,8 @@ namespace Cuyahoga.Web.Install
 
 		private void btnInstallDatabase_Click(object sender, EventArgs e)
 		{	
-			DatabaseInstaller dbInstaller = new DatabaseInstaller(Server.MapPath("~/Install/Core"), Assembly.Load("Cuyahoga.Core"));
-			DatabaseInstaller modulesDbInstaller = new DatabaseInstaller(Server.MapPath("~/Install/Modules"), Assembly.Load("Cuyahoga.Modules"));
+			ModuleInstaller dbInstaller = new ModuleInstaller(Server.MapPath("~/Install/Core"), Assembly.Load("Cuyahoga.Core"));
+			ModuleInstaller modulesDbInstaller = new ModuleInstaller(Server.MapPath("~/Install/Modules"), Assembly.Load("Cuyahoga.Modules"));
 
 			try
 			{

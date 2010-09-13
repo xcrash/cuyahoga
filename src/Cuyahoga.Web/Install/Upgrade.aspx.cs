@@ -6,6 +6,7 @@ using System.Web.UI.WebControls;
 using Cuyahoga.Core;
 using Cuyahoga.Core.Domain;
 using Cuyahoga.Core.Service;
+using Cuyahoga.Core.Service.Modules;
 
 namespace Cuyahoga.Web.Install
 {
@@ -45,18 +46,18 @@ namespace Cuyahoga.Web.Install
 					bool canUpgrade = false;
 
 					// Core
-					DatabaseInstaller dbInstaller = new DatabaseInstaller(Server.MapPath("~/Install/Core"), Assembly.Load("Cuyahoga.Core"));
-					if (dbInstaller.CanUpgrade)
+					ModuleInstaller coreInstaller = new ModuleInstaller(Server.MapPath("~/Install/Core"), Assembly.Load("Cuyahoga.Core"));
+					if (coreInstaller.CanUpgrade)
 					{
 						canUpgrade = true;
-						lblCoreAssemblyCurrent.Text = "Cuyahoga Core " + dbInstaller.CurrentVersionInDatabase.ToString(3);
-						lblCoreAssemblyNew.Text = "Cuyahoga Core " + dbInstaller.NewAssemblyVersion.ToString(3);
+						lblCoreAssemblyCurrent.Text = "Cuyahoga Core " + coreInstaller.CurrentVersionInDatabase.ToString(3);
+						lblCoreAssemblyNew.Text = "Cuyahoga Core " + coreInstaller.NewAssemblyVersion.ToString(3);
 						// Core modules
-						DatabaseInstaller moduleDbInstaller = new DatabaseInstaller(Server.MapPath("~/Install/Modules"), Assembly.Load("Cuyahoga.Modules"));
-						lblModulesAssemblyCurrent.Text = "Cuyahoga Core Modules " + moduleDbInstaller.CurrentVersionInDatabase.ToString(3);
-						if (moduleDbInstaller.CanUpgrade)
+						ModuleInstaller modulesInstaller = new ModuleInstaller(Server.MapPath("~/Install/Modules"), Assembly.Load("Cuyahoga.Modules"));
+						lblModulesAssemblyCurrent.Text = "Cuyahoga Core Modules " + modulesInstaller.CurrentVersionInDatabase.ToString(3);
+						if (modulesInstaller.CanUpgrade)
 						{
-							lblModulesAssemblyNew.Text = "Cuyahoga Core Modules " + moduleDbInstaller.NewAssemblyVersion.ToString(3);
+							lblModulesAssemblyNew.Text = "Cuyahoga Core Modules " + modulesInstaller.NewAssemblyVersion.ToString(3);
 						}
 						else
 						{
@@ -109,8 +110,8 @@ namespace Cuyahoga.Web.Install
 
 		private void btnUpgradeDatabase_Click(object sender, EventArgs e)
 		{
-			DatabaseInstaller dbInstaller = new DatabaseInstaller(Server.MapPath("~/Install/Core"), Assembly.Load("Cuyahoga.Core"));
-			DatabaseInstaller modulesDbInstaller = new DatabaseInstaller(Server.MapPath("~/Install/Modules"), Assembly.Load("Cuyahoga.Modules"));
+			ModuleInstaller dbInstaller = new ModuleInstaller(Server.MapPath("~/Install/Core"), Assembly.Load("Cuyahoga.Core"));
+			ModuleInstaller modulesDbInstaller = new ModuleInstaller(Server.MapPath("~/Install/Modules"), Assembly.Load("Cuyahoga.Modules"));
 
 			try
 			{
