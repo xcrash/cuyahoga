@@ -453,6 +453,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Cuyahoga.Core.build" />
+    <EmbeddedResource Include="Service\services.config" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Domain\Right.hbm.xml" />
