@@ -18,3 +18,4 @@ _ReSharper.*
 /src/Cuyahoga.Web/Modules/Sitemap
 /src/Cuyahoga.Web/Modules/StaticHtml
 /src/Cuyahoga.Web/Modules/User
+/src/Cuyahoga.Web/Modules/ECommerce
