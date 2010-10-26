@@ -1403,10 +1403,10 @@
       <DependentUpon>Rss.aspx.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Content Include="Config\facilities.config" />
-    <Content Include="Config\properties.config" />
-    <Content Include="Config\services.config" />
-    <Content Include="Config\logging.config" />
+    <Content Include="ConfigDefault\facilities.config" />
+    <Content Include="ConfigDefault\services.config" />
+    <Content Include="ConfigDefault\logging.config" />
+    <Content Include="ConfigDefault\properties.config" />
     <None Include="Cuyahoga.Web.build" />
     <None Include="Install\Core\Database\mssql2000\0.8.2.sql" />
     <None Include="Install\Core\Database\mssql2000\0.9.0.sql" />
@@ -1466,12 +1466,12 @@
     <Content Include="Manager\Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Config\" />
     <Folder Include="SiteData\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
+    <PreBuildEvent>xcopy /y /r /d "$(ProjectDir)\ConfigDefault\*.config" "$(ProjectDir)\Config\"</PreBuildEvent>
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
