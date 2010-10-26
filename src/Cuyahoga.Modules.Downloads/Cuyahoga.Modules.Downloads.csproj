@@ -190,10 +190,12 @@
     <Content Include="App_GlobalResources\Cuyahoga.Modules.Downloads.GlobalResources.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Cuyahoga.Modules.Downloads.GlobalResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="App_GlobalResources\Cuyahoga.Modules.Downloads.GlobalResources.nl.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Cuyahoga.Modules.Downloads.GlobalResources.nl.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
     <EmbeddedResource Include="Web\Downloads.ascx.resx">
       <DependentUpon>Downloads.ascx.cs</DependentUpon>
@@ -214,7 +216,9 @@
     <EmbeddedResource Include="Web\Resources\Strings.sv.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Web\Resources\Strings.vi.resx" />
+    <EmbeddedResource Include="Web\Resources\Strings.vi.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <None Include="Cuyahoga.Modules.Downloads.build" />
     <None Include="Install\Database\mssql2000\0.8.2.sql" />
     <None Include="Install\Database\mssql2000\0.9.0.sql" />
@@ -272,13 +276,13 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>xcopy /s /y "$(ProjectDir)"Web\*.as?x "$(ProjectDir)"..\Cuyahoga.Web\Modules\Downloads\
-xcopy /s /y "$(ProjectDir)"Web\*.gif "$(ProjectDir)"..\Cuyahoga.Web\Modules\Downloads\
-xcopy /s /y "$(ProjectDir)"Install\Database\*.sql "$(ProjectDir)"..\Cuyahoga.Web\Modules\Downloads\Install\Database\
-xcopy /s /y "$(TargetDir)"Cuyahoga.Modules.Downloads*.dll "$(ProjectDir)"..\Cuyahoga.Web\bin\
-xcopy /s /y "$(ProjectDir)"Views\*.as?x "$(ProjectDir)"..\Cuyahoga.Web\Modules\Downloads\Views\
-xcopy /s /y "$(ProjectDir)"Views\*.config "$(ProjectDir)"..\Cuyahoga.Web\Modules\Downloads\Views\
-xcopy /s /y "$(ProjectDir)"App_GlobalResources\*.resx "$(ProjectDir)"..\Cuyahoga.Web\App_GlobalResources\</PostBuildEvent>
+    <PostBuildEvent>xcopy /s /y /r /d "$(ProjectDir)"Web\*.as?x "$(ProjectDir)"..\Cuyahoga.Web\Modules\Downloads\
+xcopy /s /y /r /d "$(ProjectDir)"Web\*.gif "$(ProjectDir)"..\Cuyahoga.Web\Modules\Downloads\
+xcopy /s /y /r /d "$(ProjectDir)"Install\Database\*.sql "$(ProjectDir)"..\Cuyahoga.Web\Modules\Downloads\Install\Database\
+xcopy /s /y /r /d "$(TargetDir)$(TargetName).dll" "$(ProjectDir)"..\Cuyahoga.Web\bin\
+xcopy /s /y /r /d "$(ProjectDir)"Views\*.as?x "$(ProjectDir)"..\Cuyahoga.Web\Modules\Downloads\Views\
+xcopy /s /y /r /d "$(ProjectDir)"Views\*.config "$(ProjectDir)"..\Cuyahoga.Web\Modules\Downloads\Views\
+xcopy /s /y /r /d "$(ProjectDir)"App_GlobalResources\*.resx "$(ProjectDir)"..\Cuyahoga.Web\App_GlobalResources\</PostBuildEvent>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

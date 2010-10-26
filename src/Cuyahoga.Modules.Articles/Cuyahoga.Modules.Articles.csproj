@@ -144,10 +144,12 @@
     <Content Include="App_GlobalResources\Cuyahoga.Modules.Articles.GlobalResources.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Cuyahoga.Modules.Articles.GlobalResources.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="App_GlobalResources\Cuyahoga.Modules.Articles.GlobalResources.nl.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Cuyahoga.Modules.Articles.GlobalResources.nl.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
     <EmbeddedResource Include="Domain\Article.hbm.xml" />
     <EmbeddedResource Include="Web\Articles.ascx.resx">
@@ -168,7 +170,9 @@
     <EmbeddedResource Include="Web\Resources\Strings.sv.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Web\Resources\Strings.vi.resx" />
+    <EmbeddedResource Include="Web\Resources\Strings.vi.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <None Include="Cuyahoga.Modules.Articles.build" />
     <None Include="Install\Database\mssql2000\1.5.1.sql" />
     <None Include="Install\Database\mssql2000\1.5.2.sql" />
@@ -229,11 +233,11 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>xcopy /s /y "$(ProjectDir)"Web\*.as?x "$(ProjectDir)"..\Cuyahoga.Web\Modules\Articles\
-xcopy /s /y "$(ProjectDir)"Views\*.as?x "$(ProjectDir)"..\Cuyahoga.Web\Modules\Articles\Views\
-xcopy /s /y "$(ProjectDir)"Views\*.config "$(ProjectDir)"..\Cuyahoga.Web\Modules\Articles\Views\
-xcopy /s /y "$(ProjectDir)"Install\Database\*.sql "$(ProjectDir)"..\Cuyahoga.Web\Modules\Articles\Install\Database\
-xcopy /s /y "$(ProjectDir)"App_GlobalResources\*.resx "$(ProjectDir)"..\Cuyahoga.Web\App_GlobalResources\
-xcopy /s /y "$(TargetDir)"Cuyahoga.Modules.Articles*.dll "$(ProjectDir)"..\Cuyahoga.Web\bin\</PostBuildEvent>
+    <PostBuildEvent>xcopy /s /y /r /d "$(ProjectDir)"Web\*.as?x "$(ProjectDir)"..\Cuyahoga.Web\Modules\Articles\
+xcopy /s /y /r /d "$(ProjectDir)"Views\*.as?x "$(ProjectDir)"..\Cuyahoga.Web\Modules\Articles\Views\
+xcopy /s /y /r /d "$(ProjectDir)"Views\*.config "$(ProjectDir)"..\Cuyahoga.Web\Modules\Articles\Views\
+xcopy /s /y /r /d "$(ProjectDir)"Install\Database\*.sql "$(ProjectDir)"..\Cuyahoga.Web\Modules\Articles\Install\Database\
+xcopy /s /y /r /d "$(ProjectDir)"App_GlobalResources\*.resx "$(ProjectDir)"..\Cuyahoga.Web\App_GlobalResources\
+xcopy /s /y /r /d "$(TargetDir)$(TargetName).dll" "$(ProjectDir)"..\Cuyahoga.Web\bin\</PostBuildEvent>
   </PropertyGroup>
 </Project>

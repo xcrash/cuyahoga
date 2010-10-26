@@ -530,10 +530,12 @@
     <Content Include="App_GlobalResources\Cuyahoga.Modules.StaticHtml.GlobalResources.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Cuyahoga.Modules.StaticHtml.GlobalResources.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="App_GlobalResources\Cuyahoga.Modules.StaticHtml.GlobalResources.nl.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Cuyahoga.Modules.StaticHtml.GlobalResources.nl.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
     <EmbeddedResource Include="Categories\Resources\Strings.resx">
       <SubType>Designer</SubType>
@@ -563,7 +565,9 @@
     <EmbeddedResource Include="Search\Resources\Strings.sv.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Search\Resources\Strings.vi.resx" />
+    <EmbeddedResource Include="Search\Resources\Strings.vi.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Search\Search.ascx.resx">
       <DependentUpon>Search.ascx.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -589,7 +593,9 @@
       <DependentUpon>ResetPassword.ascx.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="User\Resources\Strings.de.resx" />
+    <EmbeddedResource Include="User\Resources\Strings.de.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="User\Resources\Strings.es.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -608,7 +614,9 @@
     <EmbeddedResource Include="User\Resources\Strings.sv.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="User\Resources\Strings.vi.resx" />
+    <EmbeddedResource Include="User\Resources\Strings.vi.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="User\User.ascx.resx">
       <DependentUpon>User.ascx.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -631,13 +639,14 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>xcopy /s /y "$(ProjectDir)"*.as?x "$(ProjectDir)"..\Cuyahoga.Web\Modules
-xcopy /s /y "$(ProjectDir)"*.config "$(ProjectDir)"..\Cuyahoga.Web\Modules
-xcopy /s /y "$(ProjectDir)"*.gif "$(ProjectDir)"..\Cuyahoga.Web\Modules
-xcopy /s /y "$(ProjectDir)"*.png "$(ProjectDir)"..\Cuyahoga.Web\Modules
-xcopy /s /y "$(ProjectDir)"*.txt "$(ProjectDir)"..\Cuyahoga.Web\Modules
-xcopy /s /y "$(ProjectDir)"App_GlobalResources\*.resx "$(ProjectDir)"..\Cuyahoga.Web\App_GlobalResources
-xcopy /s /y "$(TargetDir)"Cuyahoga.Modules*.dll "$(ProjectDir)"..\Cuyahoga.Web\bin
+    <PostBuildEvent>xcopy /s /y /r /d "$(ProjectDir)"*.as?x "$(ProjectDir)"..\Cuyahoga.Web\Modules
+xcopy /s /y /r /d "$(ProjectDir)"*.config "$(ProjectDir)"..\Cuyahoga.Web\Modules
+xcopy /s /y /r /d "$(ProjectDir)"*.gif "$(ProjectDir)"..\Cuyahoga.Web\Modules
+xcopy /s /y /r /d "$(ProjectDir)"*.png "$(ProjectDir)"..\Cuyahoga.Web\Modules
+xcopy /s /y /r /d "$(ProjectDir)"*.txt "$(ProjectDir)"..\Cuyahoga.Web\Modules
+xcopy /y /r /d "$(ProjectDir)"App_GlobalResources\*.resx "$(ProjectDir)"..\Cuyahoga.Web\App_GlobalResources
+
+xcopy /y /r /d "$(TargetDir)$(TargetName).dll" "$(ProjectDir)"..\Cuyahoga.Web\bin
 </PostBuildEvent>
   </PropertyGroup>
   <ProjectExtensions>
