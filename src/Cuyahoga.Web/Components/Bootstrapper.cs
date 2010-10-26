@@ -6,6 +6,7 @@ using Castle.Windsor;
 using Castle.MicroKernel.Registration;
 using Cuyahoga.Core;
 using Cuyahoga.Core.Service;
+using Cuyahoga.Core.Service.Modules;
 using Cuyahoga.Core.Util;
 using Cuyahoga.Core.Validation;
 using Cuyahoga.Core.Validation.ModelValidators;
@@ -89,11 +90,11 @@ namespace Cuyahoga.Web.Components
 			if (!HttpContext.Current.Request.RawUrl.Contains("Install"))
 			{
 				// Check version and redirect to install pages if neccessary.
-				DatabaseInstaller dbInstaller = new DatabaseInstaller(HttpContext.Current.Server.MapPath("~/Install/Core"),
+				ModuleInstaller moduleInfo = new ModuleInstaller(HttpContext.Current.Server.MapPath("~/Install/Core"),
 				                                                      Assembly.Load("Cuyahoga.Core"));
-				if (dbInstaller.TestDatabaseConnection())
+				if (DatabaseUtil.TestDatabaseConnection())
 				{
-					if (dbInstaller.CanUpgrade)
+					if (moduleInfo.CanUpgrade)
 					{
 						HttpContext.Current.Application.Lock();
 						HttpContext.Current.Application["IsUpgrading"] = true;
@@ -101,7 +102,7 @@ namespace Cuyahoga.Web.Components
 
 						HttpContext.Current.Response.Redirect("~/Install/Upgrade.aspx");
 					}
-					else if (dbInstaller.CanInstall)
+					else if (moduleInfo.CanInstall)
 					{
 						HttpContext.Current.Application.Lock();
 						HttpContext.Current.Application["IsInstalling"] = true;
