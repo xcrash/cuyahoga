@@ -19,7 +19,7 @@ go
 
 CREATE TABLE cuyahoga_contentitemrole(
 contentitemroleid int identity(1,1) NOT NULL CONSTRAINT PK_contentitemrole PRIMARY KEY,
-contentitemid int NOT NULL,
+contentitemid bigint NOT NULL,
 roleid int NOT NULL,
 viewallowed bit NOT NULL,
 editallowed bit NOT NULL)
